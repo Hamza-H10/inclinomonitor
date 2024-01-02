@@ -1,142 +1,107 @@
-<?php
-
-//index.php
-
-?>
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inclino Device Data</title>
     <!-- Bootstrap CSS -->
-    <link href="library/bootstrap-5/bootstrap.min.css" rel="stylesheet" />
-    <link href="library/dataTables.bootstrap5.min.css" rel="stylesheet" />
-    <link href="library/daterangepicker.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <!-- DataTables Buttons CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+    <!-- DataTables Responsive CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- DataTables JS -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <!-- DataTables Buttons JS -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
 
-    <script src="library/jquery.min.js"></script>
-    <script src="library/bootstrap-5/bootstrap.bundle.min.js"></script>
-    <script src="library/moment.min.js"></script>
-    <script src="library/daterangepicker.min.js"></script>
-    <script src="library/Chart.bundle.min.js"></script>
-    <script src="library/jquery.dataTables.min.js"></script>
-    <script src="library/dataTables.bootstrap5.min.js"></script>
-
-    <title>Flow Monitor Device Graph and Records View</title>
 </head>
 
 <body>
-
-    <div class="container-fluid">
-        <h1 class="mt-2 mb-3 text-center text-primary"> </h1>
-        <div class="card">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col col-sm-9">Device Data</div>
-                    <div class="col col-sm-3">
-                        <input type="text" id="daterange_textbox" class="form-control" readonly />
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <div class="chart-container pie-chart">
-                        <canvas id="bar_chart" height="40"> </canvas>
-                    </div>
-                    <table class="table table-striped table-bordered" id="order_table">
-                        <thead>
-                            <tr>
-                                <th>Flow Rate</th>
-                                <th>Total Pos Flow</th>
-                                <th>Signal Strength</th>
-                                <th>Update Date</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+    <div class="container mt-5">
+        <h2>Inclino Device Data</h2>
+        <!-- DataTable -->
+        <table id="deviceDataTable" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Date Time</th>
+                    <th>Device Number</th>
+                    <th>Sensor</th>
+                    <th>X Angle(Deg)</th>
+                    <th>Y Angle(Deg)</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <!-- DataTables Buttons - Export buttons -->
+        <!-- <div class="mt-3">
+        <button class="btn btn-primary" id="exportCSV">Export to CSV</button>
+        <button class="btn btn-success" id="exportExcel">Export to Excel</button>
+    </div> -->
+        <!-- Graph Button -->
+        <a href="inclino_graph.php" class="btn btn-primary mt-3">Show Graph</a>
     </div>
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+
+    <!-- DataTables Initialization Script -->
+    <script>
+        $(document).ready(function() {
+            // DataTable Initialization
+            var dataTable = $('#deviceDataTable').DataTable({
+                "ajax": {
+                    "url": "inclino_api.php", // Relative path to the file
+                    "dataSrc": "data"
+                },
+                "columns": [{
+                        "data": "date_time"
+                    },
+                    {
+                        "data": "device_number"
+                    },
+                    {
+                        "data": "sensor"
+                    },
+                    {
+                        "data": "value1"
+                    },
+                    {
+                        "data": "value2"
+                    }
+                ],
+                // DataTables Buttons - Export buttons configuration
+                dom: 'Bfrtip',
+                buttons: [
+                    'csv', 'excel'
+                ]
+            });
+
+            // Export to CSV button click event
+            $('#exportCSV').on('click', function() {
+                dataTable.button('csv').trigger();
+            });
+
+            // Export to Excel button click event
+            $('#exportExcel').on('click', function() {
+                dataTable.button('excel').trigger();
+            });
+        });
+    </script>
+
 </body>
 
 </html>
-
-<script>
-    $(document).ready(function() {
-
-        fetch_data();
-
-        var sale_chart;
-
-        function fetch_data(start_date = '', end_date = '') {
-            var dataTable = $('#order_table').DataTable({
-                "processing": true,
-                "serverSide": true,
-                "order": [],
-                "ajax": {
-                    url: "action.php",
-                    // url: "app\action.php",
-                    type: "POST",
-                    data: {
-                        action: 'fetch',
-                        start_date: start_date,
-                        end_date: end_date
-                    }
-                },
-                "drawCallback": function(settings) {
-                    var sales_date = [];
-                    var sale = [];
-
-                    for (var count = 0; count < settings.aoData.length; count++) {
-                        sales_date.push(settings.aoData[count]._aData[2]); //settings.aoData[count] is an array of objects that contains the data for the sales.
-                        sale.push(parseFloat(settings.aoData[count]._aData[1]));
-                    }
-
-                    var chart_data = {
-                        labels: sales_date,
-                        datasets: [{
-                            label: 'Data',
-                            backgroundColor: 'rgb(255, 205, 86)',
-                            color: '#fff',
-                            data: sale
-                        }]
-                    };
-
-                    var group_chart3 = $('#bar_chart');
-
-                    if (sale_chart) {
-                        sale_chart.destroy();
-                    }
-
-                    sale_chart = new Chart(group_chart3, {
-                        type: 'bar',
-                        data: chart_data
-                    });
-                }
-            });
-        }
-
-        $('#daterange_textbox').daterangepicker({
-            ranges: {
-                'Today': [moment(), moment()],
-                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            },
-            format: 'YYYY-MM-DD'
-        }, function(start, end) {
-
-            $('#order_table').DataTable().destroy();
-
-            fetch_data(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'));
-
-        });
-
-    });
-</script>

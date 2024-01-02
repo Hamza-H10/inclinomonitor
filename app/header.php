@@ -40,7 +40,7 @@
   }
 
   body {
-    background-image: url('images/bgteal2.jpg'); 
+    /* background-image: url('images/bgteal2.jpg');  */
   }
   .invisible {
     display: none;

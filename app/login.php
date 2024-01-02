@@ -7,7 +7,7 @@
   <style type="text/css">
     body {
       background-color: #ffffff; /* #DADADA */
-      background-image: url('images/bgteal2.jpg');
+      /* background-image: url('images/bgteal2.jpg'); */
     }
     body > .grid {
       height: 100%;
@@ -64,17 +64,18 @@
  
   <div class="column">
     <div class="ui inverted segment">
-      <b>DATA DIGGER EQUIPMENT</b>
+      <!-- <b>DATA DIGGER EQUIPMENT</b> -->
+      <b>INCLINO VIEW</b>
     </div>
-    <div class="ui raised segment">
+    <!-- <div class="ui raised segment">
     <p>A user friendly solution for Automation, Safety and Security for Structural,
 Environmental and Geo-Technical Instrumentation. The Instruments are based on established Vibrating Wire Technology and MEMS technology...</p>
-    </div>
+    </div> -->
 
     <h2 class="ui black image header">
-      <img src="images/favicon-96x96.png" class="image">
+      <!-- <img src="images/favicon-96x96.png" class="image"> -->
       <div class="content">
-        DDE Account Log-In
+      Account Log-In
       </div>
     </h2>
     <form class="ui large form" method="POST">

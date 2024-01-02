@@ -57,13 +57,40 @@
                     </div>
                 </div>
             </div>
-            <div class="field">
+            <!-- <div class="field">
                 <label>Device X</label>
                 <input type="text" name="device_x" placeholder="">
-            </div>
+            </div> -->
             <div class="field">
+                <label>Total Depth</label>
+                <input type="text" name="total_depth" placeholder="">
+            </div>
+            <!-- <div class="field">
                 <label>Device Y</label>
                 <input type="text" name="device_y" placeholder="">
+            </div> -->
+            <div class="field">
+                <label>Total Sensor</label>
+                <input type="text" name="total_sensor" placeholder="">
+            </div>
+            <div class="field">
+                <label>Sensor1</label>
+                <input type="text" name="total_sensor" placeholder="">
+            </div><div class="field">
+                <label>Sensor2</label>
+                <input type="text" name="total_sensor" placeholder="">
+            </div><div class="field">
+                <label>Sensor3</label>
+                <input type="text" name="total_sensor" placeholder="">
+            </div><div class="field">
+                <label>Sensor4</label>
+                <input type="text" name="total_sensor" placeholder="">
+            </div><div class="field">
+                <label>Sensor5</label>
+                <input type="text" name="total_sensor" placeholder="">
+            </div><div class="field">
+                <label>Sensor6</label>
+                <input type="text" name="total_sensor" placeholder="">
             </div>
         </div>
 

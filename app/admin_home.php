@@ -55,14 +55,14 @@
                     </div>
                 </div>
             </div>
-            <div class="field">
+            <!-- <div class="field">
                 <label>Unit Flow</label>
                 <input type="text" name="unit_flow" placeholder="">
-            </div>
-            <div class="field">
+            </div> -->
+            <!-- <div class="field">
                 <label>Unit Totalizer</label>
                 <input type="text" name="unit_totalizer" placeholder="">
-            </div>
+            </div> -->
         </div>
         <div class="field">
             <label>Remarks</label>
@@ -136,24 +136,24 @@
                 }
                 ]
             },
-            unit_flow: {
-                identifier: 'unit_flow',
-                rules: [
-                {
-                    type   : 'empty',
-                    prompt : 'Please select a unit for displaying flow rate'
-                }
-                ]
-            },
-            unit_totalizer: {
-                identifier: 'unit_totalizer',
-                rules: [
-                {
-                    type   : 'empty',
-                    prompt : 'Please select a unit for displaying totalizer value'
-                }
-                ]
-            },
+            // unit_flow: {
+            //     identifier: 'unit_flow',
+            //     rules: [
+            //     {
+            //         type   : 'empty',
+            //         prompt : 'Please select a unit for displaying flow rate'
+            //     }
+            //     ]
+            // },
+            // unit_totalizer: {
+            //     identifier: 'unit_totalizer',
+            //     rules: [
+            //     {
+            //         type   : 'empty',
+            //         prompt : 'Please select a unit for displaying totalizer value'
+            //     }
+            //     ]
+            // },
             username: {
                 identifier: 'display_name',
                 rules: [
